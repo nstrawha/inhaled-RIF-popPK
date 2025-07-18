@@ -17,7 +17,7 @@ Key model parameters:
 - oral/lung_dose_RIF: oral dose amount in mg
 - oral/lung_dose_freq_RIF: oral/lung dose frequency in doses/day
 
-### optimize_regimen_RIF.m
+### [`optimize_regimen_RIF.m`](./optimize_regimen_RIF.m)
 Script to compare inhaled RIF dosing regimens, varying the dose amount and frequency for a combinatorial analysis. Compares all specified regimens of an inhaled dose to the standard oral dose of 600 mg 1x/day, then outputs a contour plot of the percent difference between the inhaled dosing regimen and the standard oral dose for AUC and C_{max}. Does not incorporate sample variation.
 
 Key model parameters:
@@ -34,22 +34,22 @@ Key model parameters:
 The ODE systems for an oral dose model and an inhaled dose model are contained in oral_dose_ODEs and lung_dose_ODEs respectively, in the functions [`RIF_oral_ODEs.m`](./RIF_oral_ODEs.m) and [`RIF_lung_ODEs.m`](./RIF_lung_ODEs.m). These are based on the model in Ramachandran & Gadgil, with the absorption in RIF_lung_ODEs based on Himstedt et al. All compartment indices are listed at the top of each file, and all equation terms are labeled with the flow they represent.
 
 ## Methods
-### getParamPDs.m
+### [`getParamPDs.m`](./getParamPDs.m)
 Returns cell arrays of probability distributions for each physiological parameter of the model based on coefficients of variation passed to it (one for all volume parameters, one for all flow parameters). All parameter distributions are normal and truncated at +/- 3 SDs.
 
 Some model parameters are taken as fractions of body weight (for volume parameters) and cardiac output (for flow parameters). These are handled and returned separately from raw volume and flow parameters for renormalization later (so total volume/flow doesn't exceed 100% of body weight or cardiac output).
 
-### loadPhysParams.m
+### [`loadPhysParams.m`](./loadPhysParams.m)
 Uses the probability distributions returned from get_param_PDs to sample the parameters of a specific patient. Renormalizes parameters taken as fractions of other model parameters. Returns two structs, one for physiological parameters (phys) and one for parition coefficients (pt - no variation incorporated).
 
-### solveODEs.m
+### [`solveODEs.m`](./solveODEs.m)
 Takes the parameters for both RIF and the model and packages them to solve the model ODEs in RIF_oral/lung_ODEs for a specific patient. Returns matrices of concentration-time courses for each dosing method with each compartment as a column. These matrices are later packaged into cell arrays outside of the function.
 
-### plotTimecourses.m
+### [`plotTimecourses.m`](./plotTimecourses.m)
 Plots the concentration-time courses returned by solveODEs. Returns both raw plots for all patients and plots of the 10th, 50th, and 90th percentiles for the patient sample. All figures are formatted for comparison as "oral plot | lung plot".
 
-### trackPKMetrics.m
+### [`trackPKMetrics.m`](./trackPKMetrics.m)
 Calculates AUC and C_{max} from the concentration-time courses returned by solveODEs. Calculates the mean and SD for AUC and C_{max} for each dosing method for the patient sample. Conducts pairwise t-tests between dosing methods and returns the p-value and effect size. Writes output to popPK_analysis_day(n_days_RIF).xlsx.
 
-### plotPTAs.m
+### [`plotPTAs.m`](./plotPTAs.m)
 Calculates and plots PTA and CFR for each nontoxic compartment based on given target values for AUC and C_{max} and a RIF-TB MIC distribution (modeled as a lognormal dist., based on data from the literature). Results are written to popPK_CFRs.xlsx.
