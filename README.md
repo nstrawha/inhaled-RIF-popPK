@@ -6,7 +6,7 @@ Lung absorption model based on Himstedt et al., 2022; DOI: https://doi.org/10.10
 Requires: Statistics and Machine Learning Toolbox, Parallel Computing Toolbox
 
 ## Main Scripts
-### run_popPK_RIF.m
+### [`run_popPK_RIF`](./run_popPK_RIF)
 Standard main script for the model. Calculates and plots concentration-time courses for a sample of patients for both an oral and inhaled dose of rifampin. Compares PK metrics (AUC and C_{max}), probability of target attainment (PTA), and cumulative fraction of response (CFR) for each method.
 
 Key model parameters:
