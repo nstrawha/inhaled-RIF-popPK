@@ -39,8 +39,8 @@ addpath("Methods/");
 %% Set parameters
 
 % modeling parameters
-n_pts_RIF = 50;
-n_days_RIF = 4;
+n_pts_RIF = 10;
+n_days_RIF = 1;
 days_to_plot_RIF = 1;
 relevant_compts_RIF = {"Lung", "Liver"};
 
