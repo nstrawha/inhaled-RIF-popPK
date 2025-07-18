@@ -1,6 +1,8 @@
 # inhaled-RIF-popPK
 Population-level ODE model for the comparison of an oral dose and inhaled dose of the anti-TB medication rifampin.
+
 Based on the model presented in Ramachandran & Gadgil, 2023; DOI: https://doi.org/10.1002/psp4.13008
+
 Lung absorption model based on Himstedt et al., 2022; DOI: https://doi.org/10.1093/jac/dkac240
 
 Requires: Statistics and Machine Learning Toolbox, Parallel Computing Toolbox
