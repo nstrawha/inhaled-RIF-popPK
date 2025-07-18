@@ -1,5 +1,5 @@
 # inhaled-RIF-popPK
-Population-level ODE model for the comparison of an oral dose and inhaled dose of the anti-TB medication rifampin.
+Population-level ODE model for the comparison of an oral dose and inhaled dose of the anti-TB medication rifampin. Able to be run quickly as-is - modeling parameters have been scaled down for quick example runs.
 
 Based on the model presented in Ramachandran & Gadgil, 2023; DOI: https://doi.org/10.1002/psp4.13008
 
