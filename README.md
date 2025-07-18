@@ -6,7 +6,7 @@ Lung absorption model based on Himstedt et al., 2022; DOI: https://doi.org/10.10
 Requires: Statistics and Machine Learning Toolbox, Parallel Computing Toolbox
 
 ## Main Scripts
-### [`run_popPK_RIF`](./run_popPK_RIF)
+### [`run_popPK_RIF.m`](./run_popPK_RIF.m)
 Standard main script for the model. Calculates and plots concentration-time courses for a sample of patients for both an oral and inhaled dose of rifampin. Compares PK metrics (AUC and C_{max}), probability of target attainment (PTA), and cumulative fraction of response (CFR) for each method.
 
 Key model parameters:
@@ -40,16 +40,16 @@ Returns cell arrays of probability distributions for each physiological paramete
 Some model parameters are taken as fractions of body weight (for volume parameters) and cardiac output (for flow parameters). These are handled and returned separately from raw volume and flow parameters for renormalization later (so total volume/flow doesn't exceed 100% of body weight or cardiac output).
 
 ### [`loadPhysParams.m`](./loadPhysParams.m)
-Uses the probability distributions returned from get_param_PDs to sample the parameters of a specific patient. Renormalizes parameters taken as fractions of other model parameters. Returns two structs, one for physiological parameters (phys) and one for parition coefficients (pt - no variation incorporated).
+Uses the probability distributions returned from [`getParamPDs.m`](./getParamPDs.m) to sample the parameters of a specific patient. Renormalizes parameters taken as fractions of other model parameters. Returns two structs, one for physiological parameters (phys) and one for parition coefficients (pt - no variation incorporated).
 
 ### [`solveODEs.m`](./solveODEs.m)
 Takes the parameters for both RIF and the model and packages them to solve the model ODEs in RIF_oral/lung_ODEs for a specific patient. Returns matrices of concentration-time courses for each dosing method with each compartment as a column. These matrices are later packaged into cell arrays outside of the function.
 
 ### [`plotTimecourses.m`](./plotTimecourses.m)
-Plots the concentration-time courses returned by solveODEs. Returns both raw plots for all patients and plots of the 10th, 50th, and 90th percentiles for the patient sample. All figures are formatted for comparison as "oral plot | lung plot".
+Plots the concentration-time courses returned by [`solveODEs.m`](./solveODEs.m). Returns both raw plots for all patients and plots of the 10th, 50th, and 90th percentiles for the patient sample. All figures are formatted for comparison as "oral plot | lung plot".
 
 ### [`trackPKMetrics.m`](./trackPKMetrics.m)
-Calculates AUC and C_{max} from the concentration-time courses returned by solveODEs. Calculates the mean and SD for AUC and C_{max} for each dosing method for the patient sample. Conducts pairwise t-tests between dosing methods and returns the p-value and effect size. Writes output to popPK_analysis_day(n_days_RIF).xlsx.
+Calculates AUC and C_{max} from the concentration-time courses returned by [`solveODEs.m`](./solveODEs.m). Calculates the mean and SD for AUC and C_{max} for each dosing method for the patient sample. Conducts pairwise t-tests between dosing methods and returns the p-value and effect size. Writes output to popPK_analysis_day(n_days_RIF).xlsx.
 
 ### [`plotPTAs.m`](./plotPTAs.m)
 Calculates and plots PTA and CFR for each nontoxic compartment based on given target values for AUC and C_{max} and a RIF-TB MIC distribution (modeled as a lognormal dist., based on data from the literature). Results are written to popPK_CFRs.xlsx.
