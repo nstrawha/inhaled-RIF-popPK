@@ -3,6 +3,8 @@ sample-level ODE model for the comparison of an oral dose and inhaled dose of th
 Based on the model presented in Ramachandran & Gadgil, 2023; DOI: https://doi.org/10.1002/psp4.13008
 Lung absorption model based on Himstedt et al., 2022; DOI: https://doi.org/10.1093/jac/dkac240
 
+Requires: Statistics and Machine Learning Toolbox, Parallel Computing Toolbox
+
 ## Main Scripts
 ### run_popPK_RIF.m
 Standard main script for the model. Calculates and plots concentration-time courses for a sample of patients for both an oral and inhaled dose of rifampin. Compares PK metrics (AUC and C_{max}), probability of target attainment (PTA), and cumulative fraction of response (CFR) for each method.
@@ -29,7 +31,7 @@ Key model parameters:
 - lung_dose_freq_max_RIF: maximum lung dose frequency to simulate in doses/day
 
 ## ODEs
-The ODE systems for an oral dose model and an inhaled dose model are contained in oral_dose_ODEs and lung_dose_ODEs respectively, in the functions RIF_oral_ODEs.m and RIF_lung_ODEs.m. These are based on the model in Ramachandran & Gadgil, with the absorption in RIF_lung_ODEs based on Himstedt et al. All compartment indices are listed at the top of each file, and all equation terms are labeled with the flow they represent.
+The ODE systems for an oral dose model and an inhaled dose model are contained in oral_dose_ODEs and lung_dose_ODEs respectively, in the functions [`RIF_oral_ODEs.m`](./RIF_oral_ODEs.m) and [`RIF_lung_ODEs.m`](./RIF_lung_ODEs.m). These are based on the model in Ramachandran & Gadgil, with the absorption in RIF_lung_ODEs based on Himstedt et al. All compartment indices are listed at the top of each file, and all equation terms are labeled with the flow they represent.
 
 ## Methods
 ### getParamPDs.m
