@@ -28,20 +28,20 @@ addpath("Methods/");
 %% Set parameters
 
 % Modeling parameters
-n_days_RIF = 4;
+n_days_RIF = 1;
 days_to_plot_RIF = 1;
-relevant_compts_RIF = {"Lung", "Plasma", "Pleura", "Lymph Node", "Liver", "Kidney"};
+relevant_compts_RIF = {"Lung", "Liver"};
 tstep_RIF = 0.01;
 
 % Dosing regimen info
 oral_dose_RIF = 600;        % mg
 oral_dose_freq_RIF = 1;     % doses/day
 
-lung_dose_min_RIF = 100;    % mg
-lung_dose_max_RIF = 1000;   % mg
+lung_dose_min_RIF = 500;    % mg
+lung_dose_max_RIF = 700;    % mg
 lung_dose_inc_RIF = 50;     % mg
 lung_dose_freq_min_RIF = 1; % doses/day
-lung_dose_freq_max_RIF = 4; % doses/day
+lung_dose_freq_max_RIF = 3; % doses/day
 
 % RIF-specific parameters
 ka_oral_RIF = 1.08;     % absorption rate [1/h]
